@@ -9,5 +9,5 @@ fun addType(type: Type){
 }
 
 open class Type(open val typeName: String) {
-
+    open fun check(type: Type) = type.typeName == this.typeName
 }

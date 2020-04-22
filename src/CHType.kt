@@ -1,3 +1,12 @@
 import java.util.*
 
-class CHType(typeName: String, typeLink: LinkedList<Type>) : Type(typeName) {}
+class CHType(typeName: String, val typeLink: LinkedList<Type>) : Type(typeName) {
+    fun link(type: CHType){
+        if (typeLink.last.check(type.typeLink.first)){
+            typeLink.removeLast()
+            typeLink.addAll(type.typeLink)
+        }else{
+            error("Can't be linked")
+        }
+    }
+}
