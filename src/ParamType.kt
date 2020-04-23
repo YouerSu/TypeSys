@@ -1,11 +1,13 @@
 open class ParamType(override val typeName: String, val paramAmount: Int) : Type(typeName) {
-    class InstanceType(typeName: String, val instanceName: String, paramTypes: Array<Type>) : Type(typeName){}
-
-    override fun check(type: Type): Boolean {
-        if (type is InstanceType){
-            return typeName == type.instanceName
-        }else{
-            return typeName == type.typeName
+    class InstanceType(typeName: String, val instanceName: String, paramTypes: Array<Type>) : Type(typeName){
+        override fun proper(type: Type): Boolean {
+            if (type is InstanceType){
+                return type.typeName == typeName
+            }else if (type is ParamType){
+                return type.typeName == instanceName
+            }else{
+                return typeName == type.typeName
+            }
         }
     }
 

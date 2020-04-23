@@ -2,7 +2,7 @@ import java.util.*
 
 class CHType(typeName: String, val typeLink: LinkedList<Type>) : Type(typeName) {
     fun link(type: CHType){
-        if (typeLink.last.check(type.typeLink.first)){
+        if (typeLink.last.proper(type.typeLink.first)){
             typeLink.removeLast()
             typeLink.addAll(type.typeLink)
         }else{
