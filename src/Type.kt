@@ -1,4 +1,4 @@
-open class Type(open val typeName: String) {
+open class Type(val typeName: String) {
     open fun proper(type: Type) = type.typeName == this.typeName
 
 

@@ -1,10 +1,7 @@
 final class UnKnow(val context: String) : Type(context){
-var possibleType: String? = null
+var possibleTypeName: String? = null
     override fun proper(type: Type): Boolean {
         if (type is UnKnow){
-            return true
-        }else if (possibleType == null){
-            addPossibleType(type.typeName)
             return true
         }else{
             return checkType(type)
@@ -12,16 +9,23 @@ var possibleType: String? = null
     }
 
     private fun checkType(type: Type): Boolean {
-        val possibleType = possibleType
-        if (possibleType != null){
-            return type.proper(getType(possibleType))
+        val possibleTypeName = possibleTypeName
+        if (possibleTypeName != null){
+            val possibleType = getType(possibleTypeName)
+            if (type.proper(possibleType)){
+                this.possibleTypeName = type.typeName
+                return true
+            }else{
+                return false
+            }
         }else{
+            addPossibleType(type.typeName)
             return true
         }
     }
 
-    fun addPossibleType(typeName: String){
-        possibleType = typeName
+    private fun addPossibleType(typeName: String){
+        possibleTypeName = typeName
     }
 
 }
