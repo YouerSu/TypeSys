@@ -20,5 +20,13 @@ open class Type(val typeName: String) {
                 error("Type ${type.typeName} has existed")
             }
         }
+
+        fun addAlias(type: Type, alias: String){
+            if (types[alias] == null){
+                types[alias] = type
+            } else{
+                error("This TypeName has exist")
+            }
+        }
     }
 }

@@ -1,0 +1,1 @@
+class PackageType(typeName: String,packageType: Type) : Type(typeName)

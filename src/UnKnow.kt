@@ -1,7 +1,7 @@
 final class UnKnow(val context: String) : Type(context){
 var possibleTypeName: String? = null
     override fun proper(type: Type): Boolean {
-        if (type is UnKnow){
+        if (type is UnKnow&&type.possibleTypeName == null){
             return true
         }else{
             return checkType(type)
