@@ -1,7 +1,6 @@
 open class Type(val typeName: String) {
     open fun proper(type: Type) = type.typeName == this.typeName
 
-
     companion object{
         private val types = HashMap<String,Type>()
         fun getType(typeName: String): Type {
@@ -29,4 +28,6 @@ open class Type(val typeName: String) {
             }
         }
     }
+
+    override fun toString(): String = typeName
 }
