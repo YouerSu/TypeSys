@@ -1,7 +1,7 @@
-class UnKnow(val context: String) : Type(context){
+class Unknown(val context: String) : Type(context){
 var possibleTypeName: String? = null
     override fun proper(type: Type): Boolean {
-        if (type is UnKnow&&type.possibleTypeName == null){
+        if (type is Unknown&&type.possibleTypeName == null){
             return true
         }else{
             return checkType(type)
@@ -26,5 +26,10 @@ var possibleTypeName: String? = null
 
     private fun addPossibleType(typeName: String){
         possibleTypeName = typeName
+    }
+
+    override fun toString(): String {
+        possibleTypeName?.let { return it }
+        return "Unknown"
     }
 }
