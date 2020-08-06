@@ -1,5 +1,5 @@
 open class Type(val typeName: String) {
-    open fun proper(type: Type) = type.typeName == this.typeName
+    open fun `is`(type: Type) = type.typeName == this.typeName
 
     companion object{
         private val types = HashMap<String,Type>()

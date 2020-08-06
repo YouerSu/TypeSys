@@ -1,19 +1,20 @@
-class LinkType(typeName: String, val typeLink: Array<Type>) : Type(typeName) {
+class LinkType(val types: Array<Type>) : Type(toString()) {
 
-    fun default(type: Type): Type{
-        if (type.proper(this)){
-            val types = (0 until typeLink.lastIndex).map { typeLink[it] }
-            return LinkType(linkTypeName(types.toTypedArray()),types.toTypedArray())
+    fun add(type: Type): LinkType{
+        return LinkType(types.plus(type))
+    }
+
+    fun remove(type: Type,where: Int): LinkType{
+        if (types[where] == type) {
+            return LinkType(types.dropLast(types.size - where).plus(types.drop(where + 1)).toTypedArray())
         }else{
             error("Wrong Type")
         }
     }
 
-    companion object{
-        fun linkTypeName(params: Array<Type>) : String{
-            var name : String = ""
-            params.forEach { name.plus("${it.toString()}->") }
-            return name.dropLast(2)
-        }
+    override fun toString(): String {
+        var name = ""
+        types.forEach { name = name.plus("${it.toString()}->") }
+        return name.dropLast(2)
     }
 }

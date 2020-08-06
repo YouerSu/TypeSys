@@ -1,6 +1,6 @@
-class Unknown(val context: String) : Type(context){
+class Unknown(val identity: String) : Type(identity){
 var possibleTypeName: String? = null
-    override fun proper(type: Type): Boolean {
+    override fun `is`(type: Type): Boolean {
         if (type is Unknown&&type.possibleTypeName == null){
             return true
         }else{
@@ -12,7 +12,7 @@ var possibleTypeName: String? = null
         val possibleTypeName = possibleTypeName
         if (possibleTypeName != null){
             val possibleType = getType(possibleTypeName)
-            if (type.proper(possibleType)){
+            if (type.`is`(possibleType)){
                 this.possibleTypeName = type.typeName
                 return true
             }else{
@@ -30,6 +30,6 @@ var possibleTypeName: String? = null
 
     override fun toString(): String {
         possibleTypeName?.let { return it }
-        return "Unknown"
+        return identity
     }
 }
